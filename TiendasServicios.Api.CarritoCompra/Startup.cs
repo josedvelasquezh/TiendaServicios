@@ -1,10 +1,6 @@
-using AutoMapper;
-using FluentValidation.AspNetCore;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,10 +9,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TiendasServicios.Api.Autor.Aplicacion;
-using TiendasServicios.Api.Autor.Persistencia;
+using TiendasServicios.Api.CarritoCompra.Persistencia;
+using Microsoft.EntityFrameworkCore;
+using MediatR;
+using AutoMapper;
+using TiendasServicios.Api.CarritoCompra.Aplicacion;
+using TiendasServicios.Api.CarritoCompra.RemoteInterface;
+using TiendasServicios.Api.CarritoCompra.RemoteService;
 
-namespace TiendasServicios.Api.Autor
+namespace TiendasServicios.Api.CarritoCompra
 {
     public class Startup
     {
@@ -30,18 +31,21 @@ namespace TiendasServicios.Api.Autor
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddFluentValidation(
-                cfg => cfg.RegisterValidatorsFromAssemblyContaining<Nuevo>()
-            );
+            services.AddScoped<ILibrosService, LibrosService>();
 
-            services.AddDbContext<ContextoAutor>(options =>
+            services.AddControllers();
+
+            services.AddDbContext<CarritoContexto>(options =>
             {
-                options.UseNpgsql(Configuration.GetConnectionString("ConexionDatabase"));
+                options.UseSqlServer(Configuration.GetConnectionString("ConexionDatabase"));
             });
 
             services.AddMediatR(typeof(Nuevo.Manejador).Assembly);
 
-            services.AddAutoMapper(typeof(Consulta.Manejador));            
+            services.AddHttpClient("Libros", config => {
+                config.BaseAddress = new Uri(Configuration["Services:Libros"]);
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
