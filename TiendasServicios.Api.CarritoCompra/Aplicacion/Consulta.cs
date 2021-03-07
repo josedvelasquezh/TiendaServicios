@@ -36,6 +36,9 @@ namespace TiendasServicios.Api.CarritoCompra.Aplicacion
                     x => x.CarritoSesionId == request.CarritoSesionId
                     );
 
+                if (carritoSesion == null)
+                    throw new Exception("No existe el carrito de compras");
+
                 var carritoSessionDetalle = await _contexto.CarritoSesionDetalle.Where(
                      x => x.CarritoSesionId == request.CarritoSesionId
                     ).ToListAsync();
