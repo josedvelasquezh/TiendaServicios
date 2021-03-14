@@ -1,9 +1,10 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using MySql.Data.EntityFrameworkCore.Metadata;
 
 namespace TiendasServicios.Api.CarritoCompra.Migrations
 {
-    public partial class MigrationSqlServerInicial : Migration
+    public partial class MigrationMySqlInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +13,7 @@ namespace TiendasServicios.Api.CarritoCompra.Migrations
                 columns: table => new
                 {
                     CarritoSesionId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     FechaCreacion = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
@@ -25,7 +26,7 @@ namespace TiendasServicios.Api.CarritoCompra.Migrations
                 columns: table => new
                 {
                     CarritoSesionDetalleId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     FechaCreacion = table.Column<DateTime>(nullable: true),
                     ProductoSeleccionado = table.Column<string>(nullable: true),
                     CarritoSesionId = table.Column<int>(nullable: false)

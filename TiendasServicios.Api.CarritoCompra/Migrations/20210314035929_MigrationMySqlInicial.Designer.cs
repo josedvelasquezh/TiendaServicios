@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TiendasServicios.Api.CarritoCompra.Persistencia;
@@ -10,26 +9,24 @@ using TiendasServicios.Api.CarritoCompra.Persistencia;
 namespace TiendasServicios.Api.CarritoCompra.Migrations
 {
     [DbContext(typeof(CarritoContexto))]
-    [Migration("20210307023435_MigrationSqlServerInicial")]
-    partial class MigrationSqlServerInicial
+    [Migration("20210314035929_MigrationMySqlInicial")]
+    partial class MigrationMySqlInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.11")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("TiendasServicios.Api.CarritoCompra.Modelo.CarritoSesion", b =>
                 {
                     b.Property<int>("CarritoSesionId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("FechaCreacion")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("CarritoSesionId");
 
@@ -40,17 +37,16 @@ namespace TiendasServicios.Api.CarritoCompra.Migrations
                 {
                     b.Property<int>("CarritoSesionDetalleId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("CarritoSesionId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("FechaCreacion")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("ProductoSeleccionado")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("CarritoSesionDetalleId");
 

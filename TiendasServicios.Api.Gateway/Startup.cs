@@ -1,19 +1,18 @@
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
 using System;
-using TiendasServicios.Api.CarritoCompra.Aplicacion;
-using TiendasServicios.Api.CarritoCompra.Persistencia;
-using TiendasServicios.Api.CarritoCompra.RemoteInterface;
-using TiendasServicios.Api.CarritoCompra.RemoteService;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace TiendasServicios.Api.CarritoCompra
+namespace TiendasServicios.Api.Gateway
 {
     public class Startup
     {
@@ -27,25 +26,12 @@ namespace TiendasServicios.Api.CarritoCompra
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<ILibrosService, LibrosService>();
-
-            services.AddControllers();
-
-            services.AddDbContext<CarritoContexto>(options =>
-            {
-                options.UseMySQL(Configuration.GetConnectionString("ConexionDatabase"));
-            });
-
-            services.AddMediatR(typeof(Nuevo.Manejador).Assembly);
-
-            services.AddHttpClient("Libros", config => {
-                config.BaseAddress = new Uri(Configuration["Services:Libros"]);
-
-            });
+            //services.AddControllers();
+            services.AddOcelot();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -60,6 +46,8 @@ namespace TiendasServicios.Api.CarritoCompra
             {
                 endpoints.MapControllers();
             });
+
+            await app.UseOcelot();
         }
     }
 }

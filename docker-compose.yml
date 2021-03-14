@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  tiendasservicios.api.autor:
+    image: ${DOCKER_REGISTRY-}tiendasserviciosapiautor
+    build:
+      context: .
+      dockerfile: TiendasServicios.Api.Autor/Dockerfile
+  tiendasservicios.api.libro:
+    image: ${DOCKER_REGISTRY-}tiendasserviciosapilibro
+    build:
+      context: .
+      dockerfile: TiendasServicios.Api.Libro/Dockerfile
+
+  tiendasservicios.api.carritocompra:
+    image: ${DOCKER_REGISTRY-}tiendasserviciosapicarritocompra
+    build:
+      context: .
+      dockerfile: TiendasServicios.Api.CarritoCompra/Dockerfile
+
+  tiendasservicios.api.gateway:
+    image: ${DOCKER_REGISTRY-}tiendasserviciosapigateway
+    build:
+      context: .
+      dockerfile: TiendasServicios.Api.Gateway/Dockerfile
+
+networks:
+  default:
+    external:
+      name: microservice-red
+
+

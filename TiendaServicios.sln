@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TiendasServicios.Api.Libro"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TiendasServicios.Api.CarritoCompra", "TiendasServicios.Api.CarritoCompra\TiendasServicios.Api.CarritoCompra.csproj", "{DF15A662-3E4B-4BC3-82DF-1B47E089F064}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiendasServicios.Api.Libro.Tests", "TiendasServicios.Api.Libro.Tests\TiendasServicios.Api.Libro.Tests.csproj", "{B6A13923-F873-4D7C-8E0E-970F8134F937}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TiendasServicios.Api.Libro.Tests", "TiendasServicios.Api.Libro.Tests\TiendasServicios.Api.Libro.Tests.csproj", "{B6A13923-F873-4D7C-8E0E-970F8134F937}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{593191A7-2F01-429A-8CBC-61D39A3E8CA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiendasServicios.Api.Gateway", "TiendasServicios.Api.Gateway\TiendasServicios.Api.Gateway.csproj", "{652B1789-AC62-4778-91CE-77403414C29A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{B6A13923-F873-4D7C-8E0E-970F8134F937}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6A13923-F873-4D7C-8E0E-970F8134F937}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6A13923-F873-4D7C-8E0E-970F8134F937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{593191A7-2F01-429A-8CBC-61D39A3E8CA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{593191A7-2F01-429A-8CBC-61D39A3E8CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{593191A7-2F01-429A-8CBC-61D39A3E8CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{593191A7-2F01-429A-8CBC-61D39A3E8CA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{652B1789-AC62-4778-91CE-77403414C29A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{652B1789-AC62-4778-91CE-77403414C29A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{652B1789-AC62-4778-91CE-77403414C29A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{652B1789-AC62-4778-91CE-77403414C29A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
