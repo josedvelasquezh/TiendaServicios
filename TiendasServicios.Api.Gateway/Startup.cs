@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TiendasServicios.Api.Gateway.ImplementRemote;
+using TiendasServicios.Api.Gateway.InterfaceRemote;
+using TiendasServicios.Api.Gateway.MessageHandler;
 
 namespace TiendasServicios.Api.Gateway
 {
@@ -27,7 +30,13 @@ namespace TiendasServicios.Api.Gateway
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddControllers();
-            services.AddOcelot();
+            services.AddOcelot().AddDelegatingHandler<LibroHandler>();
+
+            services.AddHttpClient("AutorService", config => {
+                config.BaseAddress = new Uri(Configuration["Services:Autores"]);
+            });
+
+            services.AddSingleton<IAutorRemote, AutorRemote>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
